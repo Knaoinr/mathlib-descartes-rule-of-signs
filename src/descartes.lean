@@ -1,17 +1,13 @@
 import data.polynomial.basic
 import data.polynomial.degree.definitions
+import data.polynomial.ring_division
 import data.real.basic
 import data.real.sign
 import data.seq.seq
 import data.bool.basic
 import data.nat.parity
+import data.multiset.basic
 open classical
-
-#check dec
-
-example {a b : ℝ}
-: (real.sign a) = (real.sign b) ↔ (a < 0 ∧ b < 0) ∨ (a > 0 ∧ b > 0) ∨ (a = 0 ∧ a = b)
-:= sorry
 
 --example (a b : ℝ) : bool := a==b
 
@@ -37,7 +33,13 @@ match (polynomial.degree p) with
       sign_changes_helper (polynomial.coeff p) n (polynomial.coeff p n)
 end
 
-noncomputable def pos_roots (p : polynomial ℝ) : ℕ := sorry
+noncomputable def pos_roots (p : polynomial ℝ) : ℕ :=
+  multiset.count 1 (multiset.map real.sign (polynomial.roots p))
 
 lemma descartes_rule_of_signs (f : polynomial ℝ) : even (sign_changes f) ↔ even (pos_roots f)
-:= sorry
+:=
+begin
+  split,
+  { sorry, },
+  { sorry, },
+end
